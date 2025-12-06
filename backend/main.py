@@ -17,12 +17,14 @@ app = FastAPI(title="AI Farm Assistant API")
 logging.basicConfig(level=logging.INFO)
 
 # CORS configuration (Crucial for Vercel/GitHub Pages communication)
-# NOTE: Replace 'ai-plant-based-agrisense.vercel.app' with your actual Vercel domain once known!
+# NOTE: The Vercel URL here is a placeholder. You MUST replace it with your final Vercel domain.
 origins = [
     "http://127.0.0.1:5173",   
     "http://localhost:5173",
-    "https://shrinidhianchan.github.io", # GitHub Pages domain
-    "https://ai-plant-based-agrisense.vercel.app", # Vercel production backend domain
+    # Production Frontend Domain
+    "https://shrinidhianchan.github.io", 
+    # Production Backend Domain (Replace this placeholder with your actual Vercel URL)
+    "https://ai-plant-based-agrisense.vercel.app", 
 ]
 
 app.add_middleware(
@@ -81,7 +83,7 @@ async def load_models():
     global fertilizer_model, crop_encoder, fert_encoder, disease_model
     logging.info("Attempting to load ML models...")
 
-    # ✅ FIX 1: Get the directory where this script (main.py) is located
+    # ✅ FIX: Get the directory where this script (main.py) is located for robust pathing
     base_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Load Fertilizer Model Bundle
@@ -108,7 +110,14 @@ async def load_models():
     logging.info("Application startup complete.")
 
 
-# --- Endpoints (The rest of the code is sound) ---
+# --- Endpoints ---
+
+# ✅ FIX: Add a root endpoint to satisfy Vercel's health check
+@app.get("/")
+def read_root():
+    """Basic endpoint to check if the API is running."""
+    return {"status": "ok", "message": "AI Farm Assistant API is operational"}
+
 
 @app.post("/api/analyze/soil")
 def analyze_soil(input_data: SoilAnalysisInput):
