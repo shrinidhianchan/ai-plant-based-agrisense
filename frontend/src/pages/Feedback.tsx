@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import { MessageSquare, ArrowLeft } from "lucide-react";
 import emailjs from '@emailjs/browser'; 
 
-// --- IMPORTANT: REPLACE THESE PLACEHOLDERS with your actual IDs from the EmailJS dashboard
-const EMAILJS_SERVICE_ID = "service_dbtgx3s"; 
-const EMAILJS_TEMPLATE_ID = "template_95e7utf"; 
-const EMAILJS_USER_ID = "0wpniKHrzenvpw5ZQ"; 
+// --- 1. IMPORT IDs from the new config file
+import { EMAILJS_CONFIG } from "../config"; 
+
 
 export default function Feedback() {
   const [feedbackText, setFeedbackText] = useState("");
-  const [userName, setUserName] = useState(""); // New state for user's name
+  const [userName, setUserName] = useState(""); 
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(""); 
 
@@ -26,26 +25,24 @@ export default function Feedback() {
     setIsLoading(true);
     setMessage("");
 
-    // 1. UPDATED TEMPLATE PARAMETERS
-    // The key 'user_agri' must match the variable name you set for "From Name"
-    // The key 'feedback_content' must match the variable for the feedback body
     const templateParams = {
-      user_agri: userName,        // Sent to your From Name variable
-      feedback_content: feedbackText, // Sent to your feedback body variable
+      user_agri: userName, 
+      feedback_content: feedbackText, 
     };
 
     try {
+      // 2. USE THE IMPORTED IDs HERE
       const response = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
         templateParams,
-        EMAILJS_USER_ID
+        EMAILJS_CONFIG.USER_ID
       );
 
       if (response.status === 200) {
         setMessage("Success: Your feedback has been sent directly to the author!");
         setFeedbackText(""); 
-        setUserName(""); // Clear name on success
+        setUserName(""); 
       } else {
         throw new Error(`EmailJS failed with status: ${response.status}`);
       }
@@ -61,6 +58,7 @@ export default function Feedback() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-golden-yellow/20 bg-lime-300 via-background to-background flex items-center justify-center py-12 px-4">
       <div className="w-full max-w-md animate-fade-in text-lime-950">
+        
         {/* Header remains the same */}
         <div className="text-center mb-8">
           <Link
