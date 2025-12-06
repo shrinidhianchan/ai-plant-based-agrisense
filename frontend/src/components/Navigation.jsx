@@ -7,11 +7,12 @@ export default function Navigation() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // --- MODIFIED navLinks ARRAY ---
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/login", label: "Login" },
-    { href: "/signup", label: "Sign Up" },
+    { href: "/feedback", label: "Feedback" }, // ADDED Feedback link
+    // Login and Sign Up links have been removed
   ];
 
   return (
