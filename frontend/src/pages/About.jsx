@@ -1,5 +1,5 @@
 import { CheckCircle, Users, Leaf, Zap, Droplet, Microscope, Github, Linkedin, Mail, FileText } from "lucide-react";
-import { Link } from "react-router-dom"; // Import Link for routing
+import { Link } from "react-router-dom"; 
 
 // Define team members data
 const teamMembers = [
@@ -8,35 +8,36 @@ const teamMembers = [
     github: "https://github.com/shrinidhianchan",
     linkedin: "https://www.linkedin.com/in/shrinidhi-anchan",
     email: "nidhianchan4@gmail.com",
-    photo: "shrinidhi.jpg", // Placeholder for photo
+    photo: "shrinidhi.jpg", 
   },
   {
     name: "Shishir R Kulal",
     github: "https://github.com/shishir-sh26",
     linkedin: "https://www.linkedin.com/in/shishir-r-kulal",
     email: "shishirkulal1234@gmail.com",
-    photo: "shishir.jpg", // Placeholder for photo
+    photo: "shishir.jpg", 
   },
   {
     name: "Swasthik Rai",
     github: "https://github.com/swasthik01",
     linkedin: "https://www.linkedin.com/in/swasthik-rai",
     email: "swsthikrai6344@gmail.com",
-    photo: "swasthik.jpg", // Placeholder for photo
+    photo: "swasthik.jpg", 
   },
   {
     name: "Saket",
     github: "",
     linkedin: "",
     email: "",
-    photo: "saket.jpg", // Placeholder for photo
+    photo: "saket.jpg", 
   },
 ];
 
 export default function About() {
   return (
     <div className="min-h-screen bg-blend-soft-light bg-lime-950">
-      {/* Hero Section */}
+      
+      {/* Hero Section (Unchanged) */}
       <section className="py-20 px-4 animate-fade-in">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl text-white font-bold text-foreground mb-6">
@@ -48,7 +49,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission Section (Unchanged) */}
+      {/* Mission Section (HOVER ADDED: transform, shadow) */}
       <section className="py-16 bg-white text-lime-950 border-y border-border px-4">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -80,7 +81,7 @@ export default function About() {
               return (
                 <div
                   key={index}
-                  className="text-center animate-fade-in hover:shadow-lg transition-all duration-300"
+                  className="text-center p-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl animate-fade-in" 
                   style={{ animationDelay: `${(index + 1) * 0.1}s` }}
                 >
                   <div className={`p-4 bg-${item.color}/10 rounded-lg w-fit mx-auto mb-4`}>
@@ -97,7 +98,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Core Features (Unchanged) */}
+      {/* Core Features (HOVER ADDED: transform, shadow) */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl text-white font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -137,7 +138,8 @@ export default function About() {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-8 border border-border hover:shadow-lg transition-all duration-300 animate-fade-in"
+                  // HOVER added here
+                  className="bg-white rounded-xl p-8 border border-border transition-all duration-300 transform hover:scale-[1.01] hover:shadow-2xl animate-fade-in"
                   style={{ animationDelay: `${(index + 1) * 0.15}s` }}
                 >
                   <div className="flex items-start gap-6">
@@ -171,7 +173,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Key Benefits (Unchanged) */}
+      {/* Key Benefits (HOVER ADDED: shadow, border color) */}
       <section className="py-20 px-4 bg-white border-y border-border">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl text-lime-950 font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -213,7 +215,8 @@ export default function About() {
             ].map((benefit, index) => (
               <div
                 key={index}
-                className="p-6 bg-white rounded-lg border border-border hover:border-forest-green/50 hover:shadow-md transition-all duration-300 animate-fade-in"
+                // HOVER added here
+                className="p-6 bg-white rounded-lg border border-border hover:border-forest-green/50 hover:shadow-lg transition-all duration-300 transform hover:translate-y-[-2px] animate-fade-in"
                 style={{ animationDelay: `${(index + 1) * 0.08}s` }}
               >
                 <div className="flex items-start gap-3 mb-3">
@@ -231,7 +234,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* How It Works (Unchanged) */}
+      {/* How It Works (HOVER ADDED: shadow, border color) */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl text-white font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -264,7 +267,10 @@ export default function About() {
                 className="relative animate-fade-in"
                 style={{ animationDelay: `${(index + 1) * 0.15}s` }}
               >
-                <div className="bg-white rounded-2xl p-8 border-2 border-forest-green/10 h-full hover:shadow-xl hover:border-forest-green/50 transition-all duration-300">
+                <div 
+                  // HOVER added here
+                  className="bg-white rounded-2xl p-8 border-2 border-forest-green/10 h-full hover:shadow-2xl hover:border-forest-green/70 transition-all duration-300 transform hover:translate-y-[-4px]"
+                >
                   <div className="absolute -top-6 left-8 w-12 h-12 bg-gradient-to-r from-forest-green to-fresh-green text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg">
                     {item.step}
                   </div>
@@ -281,7 +287,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section (MODIFIED) */}
+      {/* CTA Section (MODIFIED: Button already has a hover effect) */}
       <section className="py-16 px-4 bg-gradient-to-r from-forest-green to-earth-brown animate-fade-in">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
@@ -290,17 +296,16 @@ export default function About() {
           <p className="text-white/90 mb-8">
             Start analyzing your soil and getting AI-powered fertilizer recommendations today
           </p>
-          {/* CTA Button Link */}
           <Link 
-            to="/analyze" // Directs to the Analyze page
-            className="inline-block px-8 py-4 text-lime-950 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
+            to="/analyze" 
+            className="inline-block px-8 py-4 text-lime-950 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
           >
             Get Started Now
           </Link>
         </div>
       </section>
 
-      {/* Team Section (NEW) */}
+      {/* Team Section (HOVER ADDED: shadow, scale) */}
       <section className="py-20 px-4 bg-white text-lime-950 border-y border-border">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -310,12 +315,12 @@ export default function About() {
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-xl p-6 text-center border border-border shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in"
+                // HOVER added here
+                className="bg-gray-50 rounded-xl p-6 text-center border border-border shadow-md transition-all duration-300 transform hover:shadow-xl hover:scale-[1.03] animate-fade-in"
                 style={{ animationDelay: `${(index + 1) * 0.1}s` }}
               >
                 {/* Photo Placeholder */}
                 <div className="mx-auto w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-lg font-bold text-gray-500 overflow-hidden border-4 border-white shadow-inner">
-                  {/* You can use a standard <img> tag here once photos are available */}
                   {member.name.split(' ').map(n => n[0]).join('')} 
                 </div>
 
@@ -323,7 +328,7 @@ export default function About() {
                   {member.name}
                 </h3>
                 
-                {/* Social Links */}
+                {/* Social Links (Individual icon hovers are preserved from the last code) */}
                 <div className="flex justify-center space-x-4 mt-4">
                   {member.github && (
                     <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-800 transition-colors duration-200">
@@ -347,7 +352,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Project Report / Detailed Overview (NEW) */}
+      {/* Project Report / Detailed Overview (HOVER ADDED: Link transformation) */}
       <section className="py-16 px-4 bg-lime-950 text-white">
         <div className="max-w-4xl mx-auto border-t border-white/20 pt-8">
           <div className="flex items-center justify-between">
@@ -355,12 +360,12 @@ export default function About() {
               <h3 className="text-2xl font-bold mb-1">Detailed Overview of the Project</h3>
               <p className="text-white/70">Access comprehensive documentation and technical insights.</p>
             </div>
-            {/* Report Link Placeholder */}
             <Link
-              to="/report.pdf" // Placeholder path for your PDF report
+              to="/report.pdf" 
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
+              // HOVER added here
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
             >
               <FileText className="w-5 h-5" />
               View Project Report
