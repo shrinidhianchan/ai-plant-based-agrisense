@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  // 💥 ADDED: Fixes pathing for GitHub Pages deployment to a subfolder
+  // MUST BE set to './' (relative path) for asset loading.
   base: './', 
   
   plugins: [react()],

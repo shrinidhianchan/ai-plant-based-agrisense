@@ -1,15 +1,17 @@
-// frontend/src/main.jsx (or wherever your router is defined)
+// frontend/src/main.jsx (or similar)
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom'; 
+// 1. CHANGE THIS IMPORT
+import { HashRouter } from 'react-router-dom'; 
 import App from './App.jsx';
+import './index.css'; // assuming you have this line
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* ADD THE basename PROP HERE: */}
-    <BrowserRouter basename="/ai-plant-based-agrisense">
+    {/* 2. AND CHANGE THIS COMPONENT */}
+    <HashRouter> 
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
 );
