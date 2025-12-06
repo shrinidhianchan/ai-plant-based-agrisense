@@ -1,4 +1,37 @@
-import { CheckCircle, Users, Leaf, Zap, Droplet, Microscope } from "lucide-react";
+import { CheckCircle, Users, Leaf, Zap, Droplet, Microscope, Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Link } from "react-router-dom"; // Import Link for routing
+
+// Define team members data
+const teamMembers = [
+  {
+    name: "Shrinidhi Anchan",
+    github: "https://github.com/shrinidhianchan",
+    linkedin: "https://www.linkedin.com/in/shrinidhi-anchan",
+    email: "nidhianchan4@gmail.com",
+    photo: "shrinidhi.jpg", // Placeholder for photo
+  },
+  {
+    name: "Shishir R Kulal",
+    github: "https://github.com/shishir-sh26",
+    linkedin: "https://www.linkedin.com/in/shishir-r-kulal",
+    email: "shishirkulal1234@gmail.com",
+    photo: "shishir.jpg", // Placeholder for photo
+  },
+  {
+    name: "Swasthik Rai",
+    github: "https://github.com/swasthik01",
+    linkedin: "https://www.linkedin.com/in/swasthik-rai",
+    email: "swsthikrai6344@gmail.com",
+    photo: "swasthik.jpg", // Placeholder for photo
+  },
+  {
+    name: "Saket",
+    github: "",
+    linkedin: "",
+    email: "",
+    photo: "saket.jpg", // Placeholder for photo
+  },
+];
 
 export default function About() {
   return (
@@ -15,7 +48,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Mission Section (Unchanged) */}
       <section className="py-16 bg-white text-lime-950 border-y border-border px-4">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -64,7 +97,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Core Features */}
+      {/* Core Features (Unchanged) */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl text-white font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -138,7 +171,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Key Benefits */}
+      {/* Key Benefits (Unchanged) */}
       <section className="py-20 px-4 bg-white border-y border-border">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl text-lime-950 font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -198,7 +231,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* How It Works (Unchanged) */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl text-white font-bold text-foreground mb-12 text-center animate-fade-in">
@@ -248,7 +281,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section (MODIFIED) */}
       <section className="py-16 px-4 bg-gradient-to-r from-forest-green to-earth-brown animate-fade-in">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
@@ -257,9 +290,82 @@ export default function About() {
           <p className="text-white/90 mb-8">
             Start analyzing your soil and getting AI-powered fertilizer recommendations today
           </p>
-          <button className="px-8 py-4 text-lime-950 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-lg">
+          {/* CTA Button Link */}
+          <Link 
+            to="/analyze" // Directs to the Analyze page
+            className="inline-block px-8 py-4 text-lime-950 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
+          >
             Get Started Now
-          </button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Team Section (NEW) */}
+      <section className="py-20 px-4 bg-white text-lime-950 border-y border-border">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-foreground mb-12 text-center animate-fade-in">
+            Meet the Team
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 rounded-xl p-6 text-center border border-border shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${(index + 1) * 0.1}s` }}
+              >
+                {/* Photo Placeholder */}
+                <div className="mx-auto w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-lg font-bold text-gray-500 overflow-hidden border-4 border-white shadow-inner">
+                  {/* You can use a standard <img> tag here once photos are available */}
+                  {member.name.split(' ').map(n => n[0]).join('')} 
+                </div>
+
+                <h3 className="text-xl font-semibold text-foreground mb-2">
+                  {member.name}
+                </h3>
+                
+                {/* Social Links */}
+                <div className="flex justify-center space-x-4 mt-4">
+                  {member.github && (
+                    <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-800 transition-colors duration-200">
+                      <Github className="w-6 h-6" />
+                    </a>
+                  )}
+                  {member.linkedin && (
+                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors duration-200">
+                      <Linkedin className="w-6 h-6" />
+                    </a>
+                  )}
+                  {member.email && (
+                    <a href={`mailto:${member.email}`} className="text-gray-500 hover:text-red-500 transition-colors duration-200">
+                      <Mail className="w-6 h-6" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Project Report / Detailed Overview (NEW) */}
+      <section className="py-16 px-4 bg-lime-950 text-white">
+        <div className="max-w-4xl mx-auto border-t border-white/20 pt-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-2xl font-bold mb-1">Detailed Overview of the Project</h3>
+              <p className="text-white/70">Access comprehensive documentation and technical insights.</p>
+            </div>
+            {/* Report Link Placeholder */}
+            <Link
+              to="/report.pdf" // Placeholder path for your PDF report
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-lg"
+            >
+              <FileText className="w-5 h-5" />
+              View Project Report
+            </Link>
+          </div>
         </div>
       </section>
     </div>
