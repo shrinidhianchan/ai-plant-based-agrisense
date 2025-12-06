@@ -1,4 +1,4 @@
-// frontend/src/pages/Feedback.tsx
+// frontend/src/pages/Feedback.jsx
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ import { MessageSquare, ArrowLeft } from "lucide-react";
 import emailjs from '@emailjs/browser'; 
 
 // --- 1. IMPORT IDs from the new config file
-import { EMAILJS_CONFIG } from "../config"; 
+// IMPORTANT: Adjust the extension here to match what you saved: 
+// Use '../config.js' if you created a .js file, or '../config.ts' if you kept the .ts file.
+import { EMAILJS_CONFIG } from "../config.js"; 
 
 
 export default function Feedback() {
