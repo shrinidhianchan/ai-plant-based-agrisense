@@ -7,12 +7,12 @@ export default function Navigation() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // --- MODIFIED navLinks ARRAY ---
+  
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/feedback", label: "Feedback" }, // ADDED Feedback link
-    // Login and Sign Up links have been removed
+    { href: "/feedback", label: "Feedback" }, 
+    
   ];
 
   return (
@@ -26,15 +26,15 @@ export default function Navigation() {
           >
             <div className="relative">
               <div className="p-2.5 bg-gradient-to-br from-forest-green to-fresh-green rounded-xl group-hover:shadow-lg transition-all duration-300 group-hover:scale-110 transform">
-                <Leaf className="w-6 h-6 text-yellow-50" strokeWidth={2.5} />
+                <Leaf className="w-6 h-6 text-green-500" strokeWidth={2.5} />
               </div>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-golden-yellow rounded-full animate-pulse"></div>
             </div>
             <div className="flex flex-col -gap-1">
-              <span className="font-extrabold text-yellow-100">
+              <span className="font-extrabold text-yellow-300">
                 AGRISENSE
               </span>
-              <span className="text-xs text-amber-800 font-semibold tracking-widest -mt-1">
+              <span className="text-xs text-amber-600 font-semibold tracking-widest -mt-1">
                 SOIL EXPERT
               </span>
             </div>
@@ -46,7 +46,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 to={link.href}
-                className="text-foreground hover:text-white transition-all duration-300 font-semibold text-sm hover:underline hover:underline-offset-4"
+                className="text-green-300 hover:text-white transition-all duration-300 font-semibold text-sm hover:underline hover:underline-offset-4"
                 style={{
                   animation: `slideInRight 0.6s ease-out ${index * 0.1}s both`,
                 }}
@@ -59,7 +59,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-white p-2 hover:bg-secondary/20 rounded-lg transition-all duration-300"
+            className="md:hidden text-green-300 p-2 hover:bg-secondary/20 rounded-lg transition-all duration-300"
           >
             {isOpen ? (
               <X className="w-6 h-6 animate-fade-in" />
@@ -76,7 +76,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 to={link.href}
-                className="block px-4 py-2 text-foreground hover:bg-white rounded-lg transition-all duration-300 font-medium"
+                className="block px-4 py-2 text-green-500 hover:bg-white rounded-lg transition-all duration-300 font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}

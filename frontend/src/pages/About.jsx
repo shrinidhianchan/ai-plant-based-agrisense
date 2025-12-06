@@ -13,14 +13,14 @@ const teamMembers = [
   {
     name: "Shishir R Kulal",
     github: "https://github.com/shishir-sh26",
-    linkedin: "https://www.linkedin.com/in/shishir-r-kulal",
+    linkedin: "https://www.linkedin.com/in/shishir-r-kulal-4757a9296",
     email: "shishirkulal1234@gmail.com",
     photo: "shishir.jpg", 
   },
   {
     name: "Swasthik Rai",
     github: "https://github.com/swasthik01",
-    linkedin: "https://www.linkedin.com/in/swasthik-rai",
+    linkedin: "https://www.linkedin.com/in/swasthik-rai-3b5629250",
     email: "swsthikrai6344@gmail.com",
     photo: "swasthik.jpg", 
   },
@@ -264,14 +264,14 @@ export default function About() {
             ].map((item, index) => (
               <div
                 key={item.step}
-                className="relative animate-fade-in"
+                className=" text-black relative animate-fade-in"
                 style={{ animationDelay: `${(index + 1) * 0.15}s` }}
               >
                 <div 
                   // HOVER added here
                   className="bg-white rounded-2xl p-8 border-2 border-forest-green/10 h-full hover:shadow-2xl hover:border-forest-green/70 transition-all duration-300 transform hover:translate-y-[-4px]"
                 >
-                  <div className="absolute -top-6 left-8 w-12 h-12 bg-gradient-to-r from-forest-green to-fresh-green text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg">
+                  <div className="absolute -top-6 left-8 w-12 h-12 bg-white -to-r from-forest-green to-fresh-green text-red rounded-xl flex items-center justify-center font-black text-lg shadow-lg">
                     {item.step}
                   </div>
                   <h3 className="text-xl font-bold text-foreground mt-4 mb-3">
@@ -365,7 +365,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               // HOVER added here
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white text-forest-green font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-xl transform hover:scale-105"
             >
               <FileText className="w-5 h-5" />
               View Project Report

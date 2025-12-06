@@ -99,7 +99,7 @@ export default function Feedback() {
                 required
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-forest-green/50 focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-green-100 focus:outline-none focus:ring-2 focus:ring-forest-green/50 focus:border-transparent transition-all duration-300"
                 placeholder="Enter your name"
               />
             </div>
@@ -119,7 +119,7 @@ export default function Feedback() {
                 rows={6}
                 value={feedbackText}
                 onChange={(e) => setFeedbackText(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-forest-green/50 focus:border-transparent transition-all duration-300 resize-none"
+                className="w-full px-4 py-3 rounded-lg border border-border bg-green-100 focus:outline-none focus:ring-2 focus:ring-forest-green/50 focus:border-transparent transition-all duration-300 resize-none"
                 placeholder="Share your thoughts here..."
               />
             </div>
@@ -135,11 +135,11 @@ export default function Feedback() {
             <button
               type="submit"
               disabled={isLoading || feedbackText.trim().length === 0 || userName.trim().length === 0}
-              className="w-full py-3 bg-forest-green text-white font-semibold rounded-lg hover:bg-forest-green/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg animate-fade-in"
+              className="w-full py-3 bg-blue-200 text-black font-semibold rounded-lg hover:bg-lime/90 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg animate-fade-in"
             >
               {isLoading ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 text-black border-white/30 border-t-white rounded-full animate-spin"></div>
                   Sending Feedback...
                 </>
               ) : (
@@ -152,7 +152,7 @@ export default function Feedback() {
           <p className="text-center text-foreground">
             <Link
               to="/"
-              className="inline-flex items-center gap-1 text-forest-green hover:text-forest-green/90 font-semibold transition-colors duration-300"
+              className="inline-flex items-center gap-1 text-green-950 hover:text-forest-green/90 font-semibold transition-colors duration-300"
             >
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </Link>

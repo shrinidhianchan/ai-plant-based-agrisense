@@ -74,19 +74,19 @@ export default function Index() {
             </span>
           </div>
 
-          <h1 className="text-6xl lg:text-7xl font-black text-white mb-6 leading-tight animate-slide-in-left drop-shadow-lg" style={{ animationDelay: "0.1s" }}>
+          <h1 className="text-6xl lg:text-7xl font-black text-green-200 mb-6 leading-tight animate-slide-in-left drop-shadow-lg" style={{ animationDelay: "0.1s" }}>
             Smart Fertilizer
             <span className="block text-golden-yellow"> Recommendations</span>
           </h1>
 
-          <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed font-medium animate-slide-in-right drop-shadow-md" style={{ animationDelay: "0.2s" }}>
+          <p className="text-xl lg:text-2xl text-blue-300 max-w-3xl mx-auto mb-10 leading-relaxed font-medium animate-slide-in-right drop-shadow-md" style={{ animationDelay: "0.2s" }}>
             Upload soil images and input NPK values. Get AI-powered fertilizer advice tailored to your crops and soil conditions.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <Link
               to="/analyze"
-              className="inline-flex items-center justify-center px-8 py-4 bg-forest-green text-white font-bold rounded-lg hover:bg-forest-green/90 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/5 text-green-200 font-bold rounded-lg hover:bg-forest-green/90 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group"
             >
               <Upload className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Analyze Now
@@ -285,7 +285,7 @@ export default function Index() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/analyze"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-forest-green font-bold rounded-lg hover:bg-white/90 transition-all duration-300 hover:shadow-2xl group hover:-translate-y-1 transform"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-forest-green font-bold rounded-lg hover:bg-black/10 transition-all duration-300 hover:shadow-2xl group hover:-translate-y-1 transform"
             >
               <Zap className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform text-lime-950" />
               Start Analysis
@@ -293,7 +293,7 @@ export default function Index() {
             </Link>
             <Link
               to="/about"
-              className="inline-flex items-center justify-center px-8 py-4 border-2 border-lime-900 text-white bg-lime-900 font-bold rounded-lg hover:bg-lime-600/10 transition-all duration-300 group hover:shadow-lg"
+              className="inline-flex items-center justify-center px-8 py-4 border-2 border-lime-900 text-black bg-lime-900 font-bold rounded-lg hover:bg-lime-600/10 transition-all duration-300 group hover:shadow-lg"
             >
               Learn More
             </Link>
