@@ -1,4 +1,4 @@
-# C:\projects\Fertilizer\backend\main.py (FINAL VERSION FOR VERCEL)
+# C:\projects\Fertilizer\backend\api\main.py (CLEANED)
 
 import os
 import joblib
@@ -17,13 +17,15 @@ app = FastAPI(title="AI Farm Assistant API")
 logging.basicConfig(level=logging.INFO)
 
 # CORS configuration (Crucial for Vercel/GitHub Pages communication)
-# NOTE: The Vercel URL here is a placeholder. You MUST replace it with your final Vercel domain.
+# NOTE: Replace the Vercel URL placeholder with your final Vercel domain when deployed.
 origins = [
-    "http://127.0.0.1:5173",   
+    "http://127.0.0.1:8000", # Localhost server (for the frontend to talk to the backend)
+    "http://localhost:8000",
+    "http://127.0.0.1:5173",  # Vite default
     "http://localhost:5173",
     # Production Frontend Domain
     "https://shrinidhianchan.github.io", 
-    # Production Backend Domain (Replace this placeholder with your actual Vercel URL)
+    # Production Backend Domain (Placeholder)
     "https://ai-plant-based-agrisense.vercel.app", 
 ]
 
@@ -89,7 +91,7 @@ async def load_models():
     # Load Fertilizer Model Bundle
     try:
         # Build path relative to main.py's location
-        bundle_path = os.path.join(base_dir, 'models', 'fertilizer_prediction_bundle.joblib')
+        bundle_path = os.path.join(base_dir, '..', 'models', 'fertilizer_prediction_bundle.joblib')
         bundle = joblib.load(bundle_path)
         fertilizer_model = bundle['model']
         crop_encoder = bundle['crop_encoder']
@@ -101,7 +103,7 @@ async def load_models():
     # Load Disease Detection Model
     try:
         # Build path relative to main.py's location
-        model_path = os.path.join(base_dir, 'models', 'plant_disease_model.h5')
+        model_path = os.path.join(base_dir, '..', 'models', 'plant_disease_model.h5')
         disease_model = tf.keras.models.load_model(model_path, compile=False)
         logging.info("Disease model loaded successfully.")
     except Exception as e:
@@ -112,7 +114,6 @@ async def load_models():
 
 # --- Endpoints ---
 
-# ✅ FIX: Add a root endpoint to satisfy Vercel's health check
 @app.get("/")
 def read_root():
     """Basic endpoint to check if the API is running."""
@@ -151,11 +152,11 @@ def analyze_soil(input_data: SoilAnalysisInput):
         # 5. Extract focus (Simplified logic)
         focus = "Balanced NPK application."
         if input_data.N < 40 and input_data.P > 40:
-             focus = "Focus on Nitrogen supplementation."
+            focus = "Focus on Nitrogen supplementation."
         elif input_data.P < 30 and input_data.N > 40:
-             focus = "Focus on Phosphorus supplementation."
+            focus = "Focus on Phosphorus supplementation."
         elif input_data.K < 30:
-             focus = "Focus on Potassium and pH adjustment."
+            focus = "Focus on Potassium and pH adjustment."
 
         return {
             "plant_species": input_data.plant_species,
@@ -165,8 +166,8 @@ def analyze_soil(input_data: SoilAnalysisInput):
 
     except ValueError as e:
         if "unseen labels" in str(e):
-             raise HTTPException(status_code=400, 
-                                 detail=f"Input validation failed for features: {input_data.plant_species}. This crop type is not supported by the current model. Please check inputs.")
+            raise HTTPException(status_code=400, 
+                                detail=f"Input validation failed for features: {input_data.plant_species}. This crop type is not supported by the current model. Please check inputs.")
         raise HTTPException(status_code=500, detail=f"Prediction Error: {e}")
     except Exception as e:
         logging.error(f"Soil analysis failed: {e}")
