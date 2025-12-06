@@ -1,4 +1,4 @@
-# C:\projects\Fertilizer\backend\main.py
+# C:\projects\Fertilizer\backend\main.py (FINAL VERSION FOR VERCEL)
 
 import os
 import joblib
@@ -16,12 +16,13 @@ import logging
 app = FastAPI(title="AI Farm Assistant API")
 logging.basicConfig(level=logging.INFO)
 
-# CORS configuration (Allows frontend to talk to backend)
+# CORS configuration (Crucial for Vercel/GitHub Pages communication)
+# NOTE: Replace 'ai-plant-based-agrisense.vercel.app' with your actual Vercel domain once known!
 origins = [
-    "http://127.0.0.1:5173",  # Vite default
+    "http://127.0.0.1:5173",   
     "http://localhost:5173",
-    "http://127.0.0.1:3000",  # React default
-    "http://localhost:3000",
+    "https://shrinidhianchan.github.io", # GitHub Pages domain
+    "https://ai-plant-based-agrisense.vercel.app", # Vercel production backend domain
 ]
 
 app.add_middleware(
@@ -39,7 +40,6 @@ fert_encoder = None
 disease_model = None
 DISEASE_LABELS = [] 
 
-# ✅ FIX 1: Set the image size to 224x224 to match the disease model's expected input shape.
 IMG_SIZE = (224, 224)
 
 # --- Utility Functions and Schemas ---
@@ -51,8 +51,6 @@ class SoilAnalysisInput(BaseModel):
     K: float
     pH: float
 
-# This list must contain ALL 38 class names from the PlantVillage dataset,
-# ordered alphabetically (which is how Keras/TensorFlow typically maps them).
 DISEASE_LABELS = [
     'Apple_Black_rot', 'Apple_Cedar_rust', 'Apple_healthy', 'Apple_scab',
     'Blueberry_healthy', 
@@ -75,7 +73,7 @@ DISEASE_LABELS = [
     'Tomato_Tomato_mosaic_virus', 'Tomato_Tomato_Yellow_Leaf_Curl_Virus', 'Tomato_healthy',
 ]
 
-# --- Application Startup Event ---
+# --- Application Startup Event (PATHING FIXED) ---
 
 @app.on_event("startup")
 async def load_models():
@@ -83,10 +81,13 @@ async def load_models():
     global fertilizer_model, crop_encoder, fert_encoder, disease_model
     logging.info("Attempting to load ML models...")
 
+    # ✅ FIX 1: Get the directory where this script (main.py) is located
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
     # Load Fertilizer Model Bundle
     try:
-        # Assumes the bundle file is in the 'models' directory relative to main.py
-        bundle_path = os.path.join(os.getcwd(), 'models', 'fertilizer_prediction_bundle.joblib')
+        # Build path relative to main.py's location
+        bundle_path = os.path.join(base_dir, 'models', 'fertilizer_prediction_bundle.joblib')
         bundle = joblib.load(bundle_path)
         fertilizer_model = bundle['model']
         crop_encoder = bundle['crop_encoder']
@@ -94,13 +95,11 @@ async def load_models():
         logging.info("Fertilizer model bundle loaded successfully.")
     except Exception as e:
         logging.error(f"Error loading fertilizer model: {e}")
-        # Consider making this a hard stop in production if the main model fails
 
     # Load Disease Detection Model
     try:
-        # Assumes the H5 file is in the 'models' directory
-        model_path = os.path.join(os.getcwd(), 'models', 'plant_disease_model.h5')
-        # Suppress TensorFlow warning about model compilation metrics
+        # Build path relative to main.py's location
+        model_path = os.path.join(base_dir, 'models', 'plant_disease_model.h5')
         disease_model = tf.keras.models.load_model(model_path, compile=False)
         logging.info("Disease model loaded successfully.")
     except Exception as e:
@@ -109,7 +108,7 @@ async def load_models():
     logging.info("Application startup complete.")
 
 
-# --- Endpoints ---
+# --- Endpoints (The rest of the code is sound) ---
 
 @app.post("/api/analyze/soil")
 def analyze_soil(input_data: SoilAnalysisInput):
@@ -182,7 +181,6 @@ async def analyze_disease(file: UploadFile = File(...)):
         image = Image.open(io.BytesIO(contents)).convert('RGB')
         
         # 2. Preprocess the image 
-        # Resize to the model's expected input shape (224x224)
         image = image.resize(IMG_SIZE)
         
         # Convert to a numpy array and normalize
@@ -199,7 +197,7 @@ async def analyze_disease(file: UploadFile = File(...)):
         predicted_index = np.argmax(predictions)
         confidence_score = predictions[0][predicted_index] * 100
         
-        # ✅ FIX 2: Convert NumPy float32 to standard Python float for JSON serialization
+        # Convert NumPy float32 to standard Python float for JSON serialization
         confidence_score_py_float = float(confidence_score)
         
         # 4. Map index to label
